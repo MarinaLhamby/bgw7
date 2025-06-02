@@ -12,19 +12,19 @@ const (
 )
 
 func main() {
-	resultA, err := calculateSalary(2, A)
+	resultA, err := calculateSalary(120, A)
 	if err != nil {
 		fmt.Println("Erro encontrado no caso A:", err)
 	}
-	resultB, err := calculateSalary(2, B)
+	resultB, err := calculateSalary(120, B)
 	if err != nil {
 		fmt.Println("Erro encontrado no caso B:", err)
 	}
-	resultC, err := calculateSalary(2, C)
+	resultC, err := calculateSalary(120, C)
 	if err != nil {
 		fmt.Println("Erro encontrado no caso C:", err)
 	}
-	resultD, err := calculateSalary(2, "D")
+	resultD, err := calculateSalary(120, "D")
 	if err != nil {
 		fmt.Println("Erro encontrado no caso D:", err)
 	}
@@ -34,8 +34,8 @@ func main() {
 	fmt.Println("Resultado D em que ocorre o erro:", resultD)
 }
 
-func calculateSalary(hours int32, category string) (salary float64, err error) {
-	hFloat := float64(hours)
+func calculateSalary(minutes int32, category string) (salary float64, err error) {
+	hFloat := float64(minutes) / 60.0
 	switch category {
 	case A:
 		salary = 3000 * hFloat

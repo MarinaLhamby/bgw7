@@ -16,19 +16,19 @@ func TestCalculateSalary(t *testing.T) {
 	}{
 		{
 			name:     "category A salary",
-			hours:    2,
+			hours:    120,
 			category: A,
 			expected: 9000,
 		},
 		{
 			name:     "category B salary",
-			hours:    2,
+			hours:    120,
 			category: B,
 			expected: 3600,
 		},
 		{
 			name:     "category C salary",
-			hours:    2,
+			hours:    120,
 			category: C,
 			expected: 2000,
 		},

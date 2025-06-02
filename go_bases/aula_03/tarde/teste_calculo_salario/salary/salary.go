@@ -8,8 +8,8 @@ const (
 	C = "C"
 )
 
-func CalculateSalary(hours int32, category string) (salary float64, err error) {
-	hFloat := float64(hours)
+func CalculateSalary(minutes int32, category string) (salary float64, err error) {
+	hFloat := float64(minutes) / 60.0
 	switch category {
 	case A:
 		salary = 3000 * hFloat
