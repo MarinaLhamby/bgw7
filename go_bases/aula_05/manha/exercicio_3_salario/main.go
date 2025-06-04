@@ -1,0 +1,29 @@
+package main
+
+import (
+	"errors"
+	"fmt"
+)
+
+var SalaryErr error = errors.New("Error: salary is less than 10000")
+
+func main() {
+	salary := 1000
+	err := checkSalary(salary)
+	if err != nil {
+		if errors.Is(err, SalaryErr) {
+			fmt.Println(err.Error())
+			return
+		}
+	}
+
+	fmt.Println("Must pay tax")
+
+}
+
+func checkSalary(salary int) error {
+	if salary <= 10000 {
+		return SalaryErr
+	}
+	return nil
+}
