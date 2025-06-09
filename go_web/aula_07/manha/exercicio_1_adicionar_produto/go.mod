@@ -1,0 +1,5 @@
+module github.com/bgw7/exercicio_1_adicionar_produto
+
+go 1.24.3
+
+require github.com/go-chi/chi/v5 v5.2.1 // indirect
