@@ -20,12 +20,12 @@ func buildProductsRoutes() http.Handler {
 	productRepository := product.NewProductJsonRepository(str, products)
 	handler := handler.NewProductHandler(productRepository)
 
-	r.Get("/", handler.GetAllProductsHandler)
-	r.Get(`/{id:[0-9]+}`, handler.GetProductByIdHandler)
-	r.Get("/search", handler.GetProductsByFilterPriceHandler)
-	r.Post("/", handler.PostProductHandler)
-	r.Put(`/{id:[0-9]+}`, handler.PutProductHandler)
-	r.Patch(`/{id:[0-9]+}`, handler.PatchHandler)
-	r.Delete(`/{id:[0-9]+}`, handler.DeleteHandler)
+	r.Get("/", handler.GetAllProductsHandler())
+	r.Get(`/{id:[0-9]+}`, handler.GetProductByIdHandler())
+	r.Get("/search", handler.GetProductsByFilterPriceHandler())
+	r.Post("/", handler.PostProductHandler())
+	r.Put(`/{id:[0-9]+}`, handler.PutProductHandler())
+	r.Patch(`/{id:[0-9]+}`, handler.PatchHandler())
+	r.Delete(`/{id:[0-9]+}`, handler.DeleteHandler())
 	return r
 }
