@@ -10,6 +10,7 @@ type HandledError struct {
 	InternalCode string
 }
 
+// New creates a HandledError
 func New(message string, internalCode string) HandledError {
 	return HandledError{
 		Message:      message,
