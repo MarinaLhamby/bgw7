@@ -1,0 +1,9 @@
+a. Qual é a primary key da tabela de clientes? Justifique sua resposta
+    É o número de identificação dele (id INT incremental), porque ele é a identificação única dessa tabela.
+
+b. Qual é a primary key da tabela de planos de Internet? Justifique a resposta.
+É o identificação do plano dele (id INT incremental), porque ele é a identificação única dessa tabela.
+
+c. Como seriam os relacionamentos entre as tabelas? Em qual tabela deve haver uma foreign key? A qual campo de qual tabela essa foreign key se refere? Justifique a resposta.
+    Fiz 2 modelos, no caso 1, a tabela planos recebe a fk (id_cliente). Nessa caso, pode existir duplicação de planos com diferentes clientes, ex.: tenho 2 pessoas com 600mb e pagando 100 reais, teria 2 registros diferentes, como se fossem planos diferentes.
+    No modelo 2 eu adicionei a tabela plano como se fosse um modelo dos planos possíveis e adicionei uma tabela (contrato) que fica responsável pela relação entre plano e cliente, portanto ela possui 2 fks. Não pensei em usar uma primary key composta porque parti da ideia que um cliente poderia ter múltiplos planos, então seria possível que (id_cliente,id_plano) não seja único
