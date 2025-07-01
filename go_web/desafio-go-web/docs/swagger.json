@@ -1,0 +1,143 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Desafio Go Web Docs",
+        "contact": {
+            "name": "Marina Rocha Lhamby"
+        },
+        "version": "1.0.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/tickets": {
+            "get": {
+                "description": "Fetch total number of tickets by period",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "tickets"
+                ],
+                "summary": "Fetch total number of tickets by period",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "início da manhã, manhã, tarde ou noite",
+                        "name": "period",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "#/definitions/domain.TotalTicketsResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/tickets/destination/average/{destination}": {
+            "get": {
+                "description": "Fetch average number of tickets by destination",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "tickets"
+                ],
+                "summary": "Fetch average number of tickets by destination",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Destination",
+                        "name": "destination",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "#/definitions/domain.AverageTicketsResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tickets/destination/{destination}": {
+            "get": {
+                "description": "Fetch number of tickets by destination",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "tickets"
+                ],
+                "summary": "Fetch number of tickets by destination",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Destination",
+                        "name": "destination",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "#/definitions/domain.TotalTicketsResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "domain.AverageTicketsResponse": {
+            "type": "object",
+            "properties": {
+                "average": {
+                    "type": "number"
+                }
+            }
+        },
+        "domain.TotalTicketsResponse": {
+            "type": "object",
+            "properties": {
+                "totalTickets": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}
