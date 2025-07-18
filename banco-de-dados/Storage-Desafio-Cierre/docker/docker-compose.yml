@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: db_dev
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: fantasy_products
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - ../docs/db/mysql/mysql_data:/var/lib/mysql
+      - ../docs/db/mysql/database.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - dev_db_network
+    restart: always
+
+networks:
+  dev_db_network:
+    driver: bridge
+volumes:
+  mysql_data:

@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  db_test:
+    image: mysql:8.0
+    container_name: db_test
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: fantasy_products_test
+      MYSQL_USER: test
+      MYSQL_PASSWORD: mypassword
+    ports:
+      - "3307:3306"
+    volumes:
+      - ../docs/db/mysql/mysql_data_test:/var/lib/mysql
+      - ../docs/db/mysql/database.sql:/docker-entrypoint-initdb.d/1_database.sql
+      - ../docs/db/mysql/data.sql:/docker-entrypoint-initdb.d/2_data.sql
+    networks:
+      - dev_test_db_network
+    restart: always
+
+networks:
+  dev_test_db_network:
+    driver: bridge
+volumes:
+  mysql_data_test:
