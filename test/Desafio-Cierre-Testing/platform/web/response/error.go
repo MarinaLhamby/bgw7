@@ -11,6 +11,8 @@ type errorResponse struct {
 	Message string `json:"message"`
 }
 
+var JsonMarshal = json.Marshal
+
 func Error(w http.ResponseWriter, statusCode int, message string) {
 	// default status code
 	defaultStatusCode := http.StatusInternalServerError
@@ -24,7 +26,7 @@ func Error(w http.ResponseWriter, statusCode int, message string) {
 		Status:  http.StatusText(defaultStatusCode),
 		Message: message,
 	}
-	bytes, err := json.Marshal(body)
+	bytes, err := JsonMarshal(body)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return

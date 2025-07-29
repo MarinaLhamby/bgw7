@@ -2,6 +2,7 @@ package response_test
 
 import (
 	"app/platform/web/response"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -90,5 +91,22 @@ func TestErrorf(t *testing.T) {
 		require.Equal(t, expectedCode, rr.Code)
 		require.Equal(t, expectedBody, rr.Body.String())
 		require.Equal(t, expectedHeaders, rr.Header())
+	})
+
+	t.Run("case 3: not planned error on marshal func should return 500", func(t *testing.T) {
+		originalMarshal := response.JsonMarshal
+		defer func() { response.JsonMarshal = originalMarshal }()
+
+		response.JsonMarshal = func(v interface{}) ([]byte, error) {
+			return nil, fmt.Errorf("marshal error")
+		}
+
+		w := httptest.NewRecorder()
+		statusCode := 400
+		message := "Test error message"
+
+		response.Error(w, statusCode, message)
+
+		require.Equal(t, http.StatusInternalServerError, w.Code)
 	})
 }
